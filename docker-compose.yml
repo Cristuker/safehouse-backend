@@ -1,0 +1,12 @@
+version: '3'
+services:
+    db: 
+      image: postgres:latest
+      environment:
+        POSTGRES_PASSWORD: 139276
+        POSTGRES_USER: safehouse
+        POSTGRES_DB: safehouse
+      ports:
+        - 5432:5432
+      container_name: sh_db
+    
