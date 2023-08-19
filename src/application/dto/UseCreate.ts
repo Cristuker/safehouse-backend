@@ -1,22 +1,13 @@
 export class UseCreate {
-  private id: number;
-  private name: string;
-  private email: string;
-  private password: string;
-  private address: string;
-  private telephone: string;
-  private filePath: string;
-  private isBlocked: boolean;
-  private unblockDate: number;
-  private createdAt: number;
-
-  public getId(): number {
-    return this.id;
-  }
-
-  public setId(id: number): void {
-    this.id = id;
-  }
+  public name: string;
+  public email: string;
+  public password: string;
+  public address: string;
+  public telephone: string;
+  public filePath: string;
+  public isBlocked: boolean;
+  public unblockDate: Date | string;
+  public createdAt: Date | string;
 
   public getName(): string {
     return this.name;
@@ -74,19 +65,19 @@ export class UseCreate {
     this.isBlocked = isBlocked;
   }
 
-  public getUnblockDate(): number {
+  public getUnblockDate(): Date | string {
     return this.unblockDate;
   }
 
-  public setUnblockDate(unblockDate: number): void {
+  public setUnblockDate(unblockDate: Date | string): void {
     this.unblockDate = unblockDate;
   }
 
-  public getCreatedAt(): number {
+  public getCreatedAt(): Date | string {
     return this.createdAt;
   }
 
-  public setCreatedAt(createdAt: number): void {
+  public setCreatedAt(createdAt: Date | string): void {
     this.createdAt = createdAt;
   }
 }
