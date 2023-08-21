@@ -2,7 +2,7 @@ import { AppModule } from "../../../../../../src/app.module";
 import { UseCreate } from "../../../../../../src/application/dto/UseCreate";
 import { UserRepository } from "../../../../../../src/infrastructure/outbound/database/prisma/repository/user.repository";
 import { Test } from "@nestjs/testing";
-import { PrismaService } from "../../../../../../src/infrastructure/outbound/database/prisma/service/prisma.service";
+import { PrismaService } from "../../../../../../src/infrastructure/outbound/database/prisma/prisma.service";
 import { INestApplication } from "@nestjs/common";
 
 describe("User repository test", () => {
@@ -38,7 +38,7 @@ describe("User repository test", () => {
     userCreate.setIsBlocked(false);
     userCreate.setTelephone("1231231");
 
-    const createdUser = await userRepository.save(userCreate);
+    const createdUser = await userRepository.create(userCreate);
 
     userRepository.findById(createdUser.id);
 
@@ -54,7 +54,7 @@ describe("User repository test", () => {
     userCreate.setIsBlocked(false);
     userCreate.setTelephone("1231231");
 
-    const createdUser = await userRepository.save(userCreate);
+    const createdUser = await userRepository.create(userCreate);
 
     userRepository.findById(createdUser.id);
 

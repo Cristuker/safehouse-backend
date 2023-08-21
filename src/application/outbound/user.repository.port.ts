@@ -1,6 +1,8 @@
-import { Prisma } from "@prisma/client";
 import { UserCreated } from "../dto/userCreated";
+import { UseCreate } from "../dto/UseCreate";
+import { User } from "../../core/domain/user.dto";
 
 export interface UserRepositoryPort {
-  save(user: Prisma.UserCreateInput): Promise<UserCreated>;
+  create(user: UseCreate): Promise<UserCreated>;
+  findByEmail(email: string): Promise<User>;
 }

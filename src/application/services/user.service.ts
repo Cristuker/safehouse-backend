@@ -2,19 +2,24 @@ import { Inject, Injectable } from "@nestjs/common";
 import { UseCreate } from "../dto/UseCreate";
 import { UserCreated } from "../dto/userCreated";
 import { UserRepositoryPort } from "../outbound/user.repository.port";
+import { User } from "../../core/domain/user.dto";
 
 @Injectable()
 export class UserService {
-  private userRepository: UserRepositoryPort;
 
   constructor(
     @Inject("UserRepositoryPort")
-    private readonly userRepo: UserRepositoryPort,
+    private readonly userRepository: UserRepositoryPort,
   ) {
-    this.userRepository = userRepo;
   }
 
   async create(user: UseCreate): Promise<UserCreated> {
-    return await this.userRepository.save(user);
+    return await this.userRepository.create(user);
   }
+
+  async findByEmail(email: string): Promise<User> {
+    return await this.userRepository.findByEmail(email);
+  }
+
+
 }
