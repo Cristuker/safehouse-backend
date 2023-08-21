@@ -16,6 +16,13 @@ import { UserService } from "./application/services/user.service";
     PrismaModule,
   ],
   controllers: [],
-  providers: [UserService, UserRepository],
+  providers: [
+    UserService,
+    UserRepository,
+    {
+      provide: "UserRepositoryPort",
+      useClass: UserRepository,
+    },
+  ],
 })
 export class AppModule {}

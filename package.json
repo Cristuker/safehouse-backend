@@ -73,6 +73,6 @@
     "testEnvironment": "node"
   },
   "prisma": {
-    "schema": "/home/cris/github/sh-backend-v2/src/infrastructure/outbound/database/prisma/schema.prisma"
+    "schema": "src/infrastructure/outbound/database/prisma/schema.prisma"
   }
 }

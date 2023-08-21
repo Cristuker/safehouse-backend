@@ -4,6 +4,7 @@ import { UserService } from "../../../src/application/services/user.service";
 import { UseCreate } from "../../../src/application/dto/UseCreate";
 import { PrismaService } from "../../../src/infrastructure/outbound/database/prisma/service/prisma.service";
 import { INestApplication } from "@nestjs/common";
+import { UserRepository } from "../../../src/infrastructure/outbound/database/prisma/repository/user.repository";
 
 describe("User service", () => {
   let userService: UserService;
@@ -14,7 +15,13 @@ describe("User service", () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
       controllers: [],
-      providers: [UserService],
+      providers: [
+        UserService,
+        {
+          provide: "UserRepositoryPort",
+          useClass: UserRepository,
+        },
+      ],
     }).compile();
 
     app = moduleRef.createNestApplication();
