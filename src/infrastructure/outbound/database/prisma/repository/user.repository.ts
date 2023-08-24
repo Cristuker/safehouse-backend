@@ -13,8 +13,8 @@ export class UserRepository implements UserRepositoryPort {
   async findByEmail(email: string): Promise<User> {
     return await this.prismaService.user.findFirst({
       where: {
-        email: email
-      }
+        email: email,
+      },
     });
   }
 
@@ -31,6 +31,4 @@ export class UserRepository implements UserRepositoryPort {
       },
     });
   }
-
-  
 }

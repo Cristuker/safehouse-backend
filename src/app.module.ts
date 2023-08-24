@@ -16,9 +16,6 @@ import { InfrastructureModule } from "./infrastructure/infrastructure.module";
       isGlobal: true,
     }),
   ],
-  providers: [
-    UserRepository,
-    
-  ],
+  providers: [UserRepository],
 })
 export class AppModule {}

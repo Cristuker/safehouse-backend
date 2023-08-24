@@ -4,6 +4,7 @@ import { UserRepository } from "../../../../../../src/infrastructure/outbound/da
 import { Test } from "@nestjs/testing";
 import { PrismaService } from "../../../../../../src/infrastructure/outbound/database/prisma/prisma.service";
 import { INestApplication } from "@nestjs/common";
+import { UserService } from "../../../../../../src/application/services/user.service";
 
 describe("User repository test", () => {
   let userRepository: UserRepository;
@@ -14,7 +15,18 @@ describe("User repository test", () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
       controllers: [],
-      providers: [UserRepository, PrismaService],
+      providers: [
+        UserRepository,
+        PrismaService,
+        {
+          provide: "UserServicePort",
+          useClass: UserService,
+        },
+        {
+          provide: "UserRepositoryPort",
+          useClass: UserRepository,
+        },
+      ],
     }).compile();
     app = moduleRef.createNestApplication();
 
@@ -31,12 +43,12 @@ describe("User repository test", () => {
 
   it("should find a user by id", async () => {
     const userCreate = new UseCreate();
-    userCreate.setAddress("address");
-    userCreate.setEmail("email@email.com");
-    userCreate.setName("Cristian");
-    userCreate.setPassword("12345");
-    userCreate.setIsBlocked(false);
-    userCreate.setTelephone("1231231");
+    userCreate.address = "address";
+    userCreate.email = "email@email.com";
+    userCreate.name = "Cristian";
+    userCreate.password = "12345";
+    userCreate.isBlocked = false;
+    userCreate.telephone = "1231231";
 
     const createdUser = await userRepository.create(userCreate);
 
@@ -47,18 +59,18 @@ describe("User repository test", () => {
 
   it("should create a user in repository", async () => {
     const userCreate = new UseCreate();
-    userCreate.setAddress("address");
-    userCreate.setEmail("email@email.com");
-    userCreate.setName("Cristian");
-    userCreate.setPassword("12345");
-    userCreate.setIsBlocked(false);
-    userCreate.setTelephone("1231231");
+    userCreate.address = "address";
+    userCreate.email = "email@email.com";
+    userCreate.name = "Cristian";
+    userCreate.password = "12345";
+    userCreate.isBlocked = false;
+    userCreate.telephone = "1231231";
 
     const createdUser = await userRepository.create(userCreate);
 
     userRepository.findById(createdUser.id);
 
-    expect(createdUser.name).toBe(userCreate.getName());
+    expect(createdUser.name).toBe(userCreate.name);
     expect(createdUser.id).toBeTruthy();
   });
 });

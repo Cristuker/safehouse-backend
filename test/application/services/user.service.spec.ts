@@ -29,10 +29,9 @@ describe("User service", () => {
     await app.init();
     userService = moduleRef.get<UserService>(UserService);
     prisma = app.get(PrismaService);
-
   });
 
-    beforeEach(async () => await prisma.cleanDb());
+  beforeEach(async () => await prisma.cleanDb());
 
   it("should use a port to create a user using repository", async () => {
     const userCreate = generateUser();
@@ -43,7 +42,7 @@ describe("User service", () => {
   it("should find a user by e-mail", async () => {
     const userCreate = generateUser();
     await userService.create(userCreate);
-    const result = await userService.findByEmail(userCreate.getEmail());
+    const result = await userService.findByEmail(userCreate.email);
     expect(result).toBeTruthy();
   });
 });

@@ -1,12 +1,12 @@
 import { UseCreate } from "../../src/application/dto/UseCreate";
-import { fakerPT_BR as faker } from '@faker-js/faker'
+import { fakerPT_BR as faker } from "@faker-js/faker";
 export function generateUser(setIsBlocked = false): UseCreate {
-    const userCreate = new UseCreate();
-    userCreate.setAddress(faker.location.street());
-    userCreate.setEmail(faker.internet.email());
-    userCreate.setName(faker.person.fullName());
-    userCreate.setPassword(faker.internet.password());
-    userCreate.setIsBlocked(faker.datatype.boolean());
-    userCreate.setTelephone(faker.phone.number());
-    return userCreate;
+  const userCreate = new UseCreate();
+  userCreate.address = faker.location.street();
+  userCreate.email = faker.internet.email();
+  userCreate.name = faker.person.fullName();
+  userCreate.password = faker.internet.password();
+  userCreate.isBlocked = faker.datatype.boolean();
+  userCreate.telephone = faker.phone.number();
+  return userCreate;
 }

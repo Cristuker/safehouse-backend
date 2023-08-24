@@ -23,7 +23,7 @@ APIv2 do projeto safehouse [veja mais neste link](https://github.com/Cristuker/S
 ## Design Patterns
 * Adapters
 * Dependency Injections
-* Builder
+
 
 ## Metodologias e Designs
 
