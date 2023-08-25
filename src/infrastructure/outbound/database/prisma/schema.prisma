@@ -10,6 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator nestjsDto {
+  provider                        = "prisma-generator-nestjs-dto"
+  output                          = "../../../../core/domain"
+  outputToNestJsResourceStructure = "false"
+  exportRelationModifierClasses   = "true"
+  reExport                        = "false"
+  createDtoPrefix                 = "Create"
+  updateDtoPrefix                 = "Update"
+  dtoSuffix                       = "Dto"
+  entityPrefix                    = ""
+  entitySuffix                    = "Entity"
+  fileNamingStyle                 = "camel"
+}
+
 model User {
   id          Int       @id @default(autoincrement())
   name        String

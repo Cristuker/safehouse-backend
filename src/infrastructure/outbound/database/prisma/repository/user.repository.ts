@@ -2,8 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma.service";
 import { Prisma } from "@prisma/client";
 import { UserRepositoryPort } from "../../../../../application/outbound/user.repository.port";
-import { UseCreate } from "../../../../../application/dto/UseCreate";
-import { UserCreated } from "../../../../../application/dto/userCreated";
 import { User } from "../../../../../core/domain/user.dto";
 
 @Injectable()

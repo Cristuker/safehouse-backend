@@ -7,5 +7,4 @@ export class UseCreate {
   public filePath: string;
   public isBlocked: boolean;
   public unblockDate: Date | string;
-  public createdAt: Date | string;
 }
