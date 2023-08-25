@@ -25,7 +25,7 @@ generator nestjsDto {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @default(uuid())
   name        String
   email       String    @unique
   password    String
@@ -35,4 +35,84 @@ model User {
   isBlocked   Boolean
   unblockDate DateTime?
   createdAt   DateTime  @default(now())
+
+  userMatch UserMatch[]
+  userHonor UserHonor[]
+
+  transgessorReport Report[] @relation("transgressorId")
+  denunciatorReport Report[] @relation("denunciatorId")
+  judgeReport       Report[] @relation("judgeId")
+}
+
+model Game {
+  id         String  @id @default(uuid())
+  name       String
+  developer  String
+  category   String
+  maxPlayers Int
+  matches    Match[]
+}
+
+model Match {
+  id     String   @id @default(uuid())
+  name   String
+  date   DateTime
+  level  String
+  status String // ABERTA,FECHADA,EM ANDAMENTO,FINALIZADA
+  gameId String   @unique
+  game   Game     @relation(fields: [gameId], references: [id])
+
+  userMatch UserMatch[]
+}
+
+model UserMatch {
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  matchId String
+  match   Match  @relation(fields: [matchId], references: [id])
+
+  isCreator Boolean
+
+  @@id([userId, matchId])
+}
+
+model Honor {
+  id         String @id @default(uuid())
+  name       String
+  points     String
+  punishment String
+  filePath   String
+
+  userHonor UserHonor[]
+}
+
+model UserHonor {
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  honorId String
+  honor   Honor  @relation(fields: [honorId], references: [id])
+
+  points    Int
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, honorId])
+}
+
+model Report {
+  id               String @id @default(uuid())
+  transgressorId   String
+  userTransgressor User   @relation("transgressorId", fields: [transgressorId], references: [id])
+
+  denunciatorId   String
+  userDenunciator User   @relation("denunciatorId", fields: [denunciatorId], references: [id])
+
+  judgeId   String
+  userJudge User   @relation("judgeId", fields: [judgeId], references: [id])
+
+  description String
+  status      String
+  title       String
+  createdAt   DateTime @default(now())
 }

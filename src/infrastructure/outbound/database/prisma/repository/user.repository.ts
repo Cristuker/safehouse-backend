@@ -22,7 +22,7 @@ export class UserRepository implements UserRepositoryPort {
     });
   }
 
-  public async findById(id: number) {
+  public async findById(id: string) {
     return await this.prismaService.user.findFirst({
       where: {
         id: id,
