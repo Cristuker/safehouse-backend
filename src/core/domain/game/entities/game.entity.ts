@@ -1,4 +1,4 @@
-import { MatchEntity } from "../match/match.entity";
+import { MatchEntity } from "../../match/entities/match.entity";
 
 export class GameEntity {
   id: string;
@@ -7,4 +7,7 @@ export class GameEntity {
   category: string;
   maxPlayers: number;
   matches?: MatchEntity[];
+  updatedAt: Date;
+  createdAt: Date;
+  IsDeleted: boolean;
 }

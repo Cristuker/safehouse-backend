@@ -2,13 +2,13 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma.service";
 import { Prisma } from "@prisma/client";
 import { UserRepositoryPort } from "../../../../../application/outbound/user.repository.port";
-import { User } from "../../../../../core/domain/user.dto";
+import { UserEntity } from "../../../../../core/domain/user/entities/user.entity";
 
 @Injectable()
 export class UserRepository implements UserRepositoryPort {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<UserEntity> {
     return await this.prismaService.user.findFirst({
       where: {
         email: email,

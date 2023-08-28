@@ -1,8 +1,7 @@
-import { UserCreated } from "../dto/userCreated";
-import { User } from "../../core/domain/user.dto";
-import { CreateUserDto } from "../../core/domain/create-user.dto";
+import { CreateUserDto } from "../../core/domain/user/dto/create-user.dto";
+import { UserEntity } from "../../core/domain/user/entities/user.entity";
 
 export interface UserRepositoryPort {
-  create(user: CreateUserDto): Promise<UserCreated>;
-  findByEmail(email: string): Promise<User>;
+  create(user: CreateUserDto): Promise<UserEntity>;
+  findByEmail(email: string): Promise<UserEntity>;
 }

@@ -1,4 +1,4 @@
-import { UserHonorEntity } from "../userHonor/userHonor.entity";
+import { UserHonorEntity } from "../../userHonor/entities/userHonor.entity";
 
 export class HonorEntity {
   id: string;
@@ -6,5 +6,8 @@ export class HonorEntity {
   points: string;
   punishment: string;
   filePath: string;
+  updatedAt: Date;
+  createdAt: Date;
+  IsDeleted: boolean;
   userHonor?: UserHonorEntity[];
 }

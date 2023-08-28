@@ -1,4 +1,4 @@
-import { UserEntity } from "../user/user.entity";
+import { UserEntity } from "../../user/entities/user.entity";
 
 export class ReportEntity {
   id: string;
@@ -11,5 +11,7 @@ export class ReportEntity {
   description: string;
   status: string;
   title: string;
+  updatedAt: Date;
+  IsDeleted: boolean;
   createdAt: Date;
 }
